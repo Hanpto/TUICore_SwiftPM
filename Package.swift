@@ -25,11 +25,18 @@ let package = Package(
                 .product(name: "SDWebImage", package: "SDWebImage")
             ],
             path: "Sources/TUICore",
-            // 头文件与实现同目录（官方 podspec 把它们全列进 source_files），
-            // 全部作为公开头，与 CocoaPods 下的可见性一致
-            publicHeadersPath: ".",
+            // 头文件必须放在 include/ 子目录里，不能与实现同目录：
+            // 同目录时 SwiftPM 会因为存在与 target 同名的 TUICore.h 而生成
+            // `umbrella header "TUICore.h"`，只有 TUICore.h 收进去的头才可见，
+            // TUIGlobalization.h / UIColor+TUIHexColor.h 这些就丢了（客户会报
+            // cannot find 'TUIGlobalization' / UIColor has no member 'tui_color'）。
+            // 放子目录后 SwiftPM 生成目录式 umbrella，所有头都公开——与 CocoaPods
+            // 生成的 <Pod>-umbrella.h（把所有 public header 全 #import）一致。
+            publicHeadersPath: "include",
             cSettings: [
-                .headerSearchPath(".")
+                // 实现文件里是 #import "TUIDefine.h" 这种引号引用，
+                // 头搬到 include/ 后要靠这条找到
+                .headerSearchPath("include")
             ]
         )
     ]
