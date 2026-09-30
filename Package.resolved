@@ -1,0 +1,24 @@
+{
+  "originHash" : "35dc40d4851053115165443b89af0da96375bb6d6bdb727ce1d118a3efc50a72",
+  "pins" : [
+    {
+      "identity" : "chat_sdk_swiftpm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tencent-RTC/Chat_SDK_SwiftPM.git",
+      "state" : {
+        "revision" : "8d24207d49b9227a5da75d485f0efdfbe382eba9",
+        "version" : "9.0.7652"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "2de3a496eaf6df9a1312862adcfd54acd73c39c0",
+        "version" : "5.21.7"
+      }
+    }
+  ],
+  "version" : 3
+}
